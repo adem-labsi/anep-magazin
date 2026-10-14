@@ -1,5 +1,5 @@
 # Production : images compilées (sans montage de sources), secret via .env.
-# Accès unique via nginx (http://localhost:8080) ; db/backend/frontend ne publient aucun port.
+# Accès unique via nginx (http://localhost:48123) ; db/backend/frontend ne publient aucun port.
 services:
   db:
     image: postgres:15
@@ -43,7 +43,7 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "8080:80"
+      - "48123:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:

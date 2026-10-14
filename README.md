@@ -40,7 +40,7 @@ npm run dev
 ```
 
 Ouvrir http://localhost:3000 (API http://127.0.0.1:8000/api). En mode Docker,
-tout passe par nginx sur http://localhost:8080 et l’API est appelée en relatif
+tout passe par nginx sur http://localhost:48123 et l’API est appelée en relatif
 (`/api`), proxifiée par Next vers `http://127.0.0.1:8000` (voir `next.config.mjs`,
 surchargeable via `API_PROXY_TARGET`).
 
@@ -52,12 +52,12 @@ make dev       # podman-compose -f docker-compose.yml up -d
 make logs
 ```
 
-- Frontend + API : http://localhost:8080 (via nginx)
+- Frontend + API : http://localhost:48123 (via nginx)
 - Backend direct : non exposé
 - PostgreSQL : non exposé
 
 nginx sert de point d’entrée unique : `/api/` est proxifié vers `backend:8000`,
-le reste vers `frontend:3000` (config `nginx/nginx.conf`, port hôte `8080`).
+le reste vers `frontend:3000` (config `nginx/nginx.conf`, port hôte `48123`).
 
 Le compose de dev monte les sources (`./backend`, `./frontend`) dans les conteneurs :
 les modifications sont prises en compte avec rechargement automatique (runserver + next dev).
@@ -75,7 +75,7 @@ Variables d’environnement optionnelles (fichier `.env` à la racine) :
 - `NEXT_PUBLIC_API_URL` — URL publique de l’API (défaut `/api`, relatif, servi par nginx)
 
 En production, backend tourne avec `gunicorn` (3 workers) et `DJANGO_DEBUG=0`,
-et nginx expose l’ensemble sur le port `8080`.
+et nginx expose l’ensemble sur le port `48123`.
 
 ## Tests
 

@@ -76,7 +76,7 @@ Backend-only, from `backend/`:
 - `next@14.2.5` has a security advisory; upgrading is a known follow-up (out of scope).
 - Compose startup race is handled by a wait-for-postgres loop in the backend
   command plus a `db` healthcheck.
-- Single ingress via `nginx/nginx.conf` (port hôte `8080:80`): `/api/` → `backend:8000`,
+- Single ingress via `nginx/nginx.conf` (port hôte `48123:80`): `/api/` → `backend:8000`,
   `/` → `frontend:3000`. `db`/`backend`/`frontend` publish **no** host ports.
   `NEXT_PUBLIC_API_URL` is relative (`/api`); non-Docker local dev relies on the
   `/api/:path*` rewrite in `frontend/next.config.mjs` (`API_PROXY_TARGET` override).
